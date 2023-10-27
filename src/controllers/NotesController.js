@@ -1,4 +1,3 @@
-const { response, query } = require("express")
 const knex = require("../database/knex")
 
 class NotesController {
@@ -12,9 +11,10 @@ class NotesController {
       user_id
     })
 
+
     const linksInsert = links.map(link => {
       return {
-        note_id,
+        note_id, 
         url: link
       }
     })
@@ -52,6 +52,10 @@ class NotesController {
     return response.json()
   }
 
+
+
+
+
   async index(request, response){
     const { title, user_id, tags } = request.query
 
@@ -85,9 +89,9 @@ class NotesController {
 
     const userTags = await knex("tags").where({ user_id })
     const notesWithTags = notes.map(note => {
-      const noteTags = userTags.filter(tag => tag.note_id === note.id)
+    const noteTags = userTags.filter(tag => tag.note_id === note.id)
 
-      console.log(note)
+   
       return{
         ...note,
         tags: noteTags
