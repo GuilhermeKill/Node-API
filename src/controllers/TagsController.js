@@ -7,12 +7,9 @@ class TagsController{
 
         const tags = await knex("tags")
         .where({ user_id })
-
-
+        
         return response.json(tags)
     }
-
-
 }
 
 

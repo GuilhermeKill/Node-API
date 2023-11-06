@@ -52,10 +52,6 @@ class NotesController {
     return response.json()
   }
 
-
-
-
-
   async index(request, response){
     const { title, tags } = request.query
     const user_id = request.user.id
