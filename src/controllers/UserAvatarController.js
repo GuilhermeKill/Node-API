@@ -9,28 +9,26 @@ class UserAvatarController {
 
         const diskStorage = new DiskStorage();
         
+
         const user = await knex("users").where({ id: user_id }).first();
+        
         
         if(!user){
             throw new AppError("O usuário precisa estar autenticado", 401);
         }
 
-        
         if(user.avatar){
             diskStorage.deleFile(user.avatar);
         }
-
-        console.log(user)
         
         const fileName = await diskStorage.saveFile(avatarFileName);
-
-        
         user.avatar = fileName; 
         
         await knex("users").update(user).where({ id: user_id });
         
-        console.log(user)
-        return response.json();
+        return response.json(
+            user
+        );
     }
 
 }
