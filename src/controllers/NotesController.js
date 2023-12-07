@@ -11,13 +11,13 @@ class NotesController {
       user_id
     })
 
-
-    const linksInsert = links.map(link => {
-      return {
-        note_id, 
-        url: link
-      }
-    })
+    
+      const linksInsert = links.map(link => {
+        return {
+          note_id, 
+          url: link
+        }
+      })
 
     await knex("links").insert(linksInsert)
 
